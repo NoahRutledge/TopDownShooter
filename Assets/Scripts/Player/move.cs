@@ -7,7 +7,7 @@ using UnityEngine;
 public class move : MonoBehaviour {
 
     private Rigidbody player;
-    public float walkSpeed = 4f;
+    public float walkSpeed = 7f;
 
     void Start()
     {
@@ -17,8 +17,11 @@ public class move : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate ()
     {
-        Vector2 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        Vector3 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
         GetComponent<Rigidbody>().velocity = targetVelocity * walkSpeed;
+
+        //always keep straight up?
+        this.transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
     void OnCollisionEnter(Collision collision)
