@@ -18,10 +18,11 @@ public class move : MonoBehaviour {
     void FixedUpdate ()
     {
         Vector3 targetVelocity = new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical"));
-        GetComponent<Rigidbody>().velocity = targetVelocity * walkSpeed;
+        player.velocity = targetVelocity * walkSpeed;
 
         //always keep straight up?
         this.transform.eulerAngles = new Vector3(0, 0, 0);
+        this.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z);
     }
 
     void OnCollisionEnter(Collision collision)
