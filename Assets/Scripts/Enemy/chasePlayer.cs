@@ -36,10 +36,15 @@ public class chasePlayer : MonoBehaviour {
             z = dz > 0 ? 1 : -1;
         }
 
-
-
-        Vector3 targetVelocity = new Vector3(x, 0, z);
-        GetComponent<Rigidbody>().velocity = targetVelocity * moveSpeed;
-
+        if(Mathf.Abs(dx) - 1.1 < 0 && Mathf.Abs(dz) - 1.1 < 0)
+        {
+            //set velocity to 0
+            GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            Vector3 targetVelocity = new Vector3(x, 0, z);
+            GetComponent<Rigidbody>().velocity = targetVelocity * moveSpeed;
+        }
     }
 }
